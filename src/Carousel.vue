@@ -25,7 +25,6 @@ import $ from './utils/NodeList.js'
 // let coerce = {
 //   interval: 'number'
 // }
-
 export default {
   props: {
     indicators: {
@@ -75,13 +74,15 @@ export default {
     },
     next () {
       if (!this.$el || this.isAnimating) { return false }
-      this.isAnimating = true
-      this.index + 1 < $('.item', this.$el).length ? this.index += 1 : this.index = 0
+      this.isAnimating = true;
+      this.index + 1 < $('.item', this.$el).length ? this.index += 1 : this.index = 0;
+      this.$emit('nextSlide');
     },
     prev () {
       if (!this.$el || this.isAnimating) { return false }
-      this.isAnimating = true
-      this.index === 0 ? this.index = $('.item', this.$el).length - 1 : this.index -= 1
+      this.isAnimating = true;
+      this.index === 0 ? this.index = $('.item', this.$el).length - 1 : this.index -= 1;
+      this.$emit('prevSlide');
     },
     toggleInterval (val) {
       if (val === undefined) { val = this._intervalID }
